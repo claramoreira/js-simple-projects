@@ -35,8 +35,8 @@ document.addEventListener('click', function (e) {
         if (type_of_win) {
             if (type_of_win[1]) {
                 document.getElementById("game-result").innerHTML = `
-                <h2>We have a winner! The winner is: ${win_img[moves["col-" + type_of_win[1]]]}!</h2>
-                <p>Type of win: ${type_of_win[0]}!</p>
+                <h2>We have a winner! The winner is: ${win_img[moves["col-" + type_of_win[1]]]}</h2>
+                <p>Type of win: ${type_of_win[0]}</p>
                 <button class="btn" onclick={reset()}>Reset game!</reset>
                 `;
             }
