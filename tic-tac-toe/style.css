@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    color: rgb(83, 78, 158);
+}
+
+.board {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    background-color: rgba(201, 216, 216, 0.575);
+    width: 30em;
+
+}
+
+.col {
+    display: flex;
+    height: 10rem;
+    width: 30rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.border-under {
+    border-bottom: 0.1rem solid black;
+}
+
+.border-right {
+    border-right: 0.1rem solid black;
+}
