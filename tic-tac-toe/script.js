@@ -9,7 +9,7 @@ const moves = {
     "col-32": "-",
     "col-33": "-",
 };
-let curr_player, curr_mark = "O", target_id, type_of_win;
+let curr_player, curr_mark = "O", target_id, type_of_win, is_over = 0;
 
 const img = {
     "O": "<img class='board-img' src='img/O.png'/>",
@@ -17,39 +17,39 @@ const img = {
     "-": ""
 }
 
-
 const win_img = {
     "O": "<img class='win-img' src='img/O.png'/>",
     "X": "<img class='win-img' src='img/X.png'/>",
 }
 
-
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('col')) {
         // this div has been clicked
-        target_id = e.target.id;
-        if (moves[target_id] == "-") {
-            moves[target_id] = curr_mark;
-        }
-        type_of_win = check_win();
-        if (type_of_win) {
-            if (type_of_win[1]) {
-                document.getElementById("game-result").innerHTML = `
+        if (!is_over) {
+            target_id = e.target.id;
+            if (moves[target_id] == "-") {
+                moves[target_id] = curr_mark;
+            }
+            type_of_win = check_win();
+            if (type_of_win) {
+                if (type_of_win[1]) {
+                    document.getElementById("game-result").innerHTML = `
                 <h2>We have a winner! The winner is: ${win_img[moves["col-" + type_of_win[1]]]}</h2>
                 <p>Type of win: ${type_of_win[0]}</p>
                 <button class="btn" onclick={reset()}>Reset game!</reset>
                 `;
-            }
-            else {
-                document.getElementById("game-result").innerHTML = `
+                }
+                else {
+                    document.getElementById("game-result").innerHTML = `
                 <h2>Nobody wins!</h2>
                 <p>Type of win: ${type_of_win[0]}</p>
                 <button class="btn" onclick={reset()}>Reset game!</reset>
                 `;
+                }
             }
+            curr_mark = (curr_mark == "O") ? "X" : "O";
+            document.getElementById("board-game").innerHTML = render()
         }
-        curr_mark = (curr_mark == "O") ? "X" : "O";
-        document.getElementById("board-game").innerHTML = render()
     }
 });
 
@@ -59,8 +59,9 @@ function reset() {
             moves["col-" + i + j] = "-"
         }
     }
-    document.getElementById("game-result").innerHTML = ""
-    document.getElementById("board-game").innerHTML = render()
+    is_over = 0;
+    document.getElementById("game-result").innerHTML = "";
+    document.getElementById("board-game").innerHTML = render();
 }
 
 function render() {
@@ -99,22 +100,27 @@ function check_win() {
     // row combination
     for (let i = 1; i <= 3; i++) {
         if (moves["col-" + i + "1"] == moves["col-" + i + "2"] && moves["col-" + i + "2"] == moves["col-" + i + "3"] && moves["col-" + i + "2"] != '-') {
-            return ["Row win", i + "1"]
+            is_over = 1;
+            return ["Row win", i + "1"];
         }
     }
     // column combination
     for (let i = 1; i <= 3; i++) {
         if (moves["col-1" + i] == moves["col-2" + i] && moves["col-2" + i] == moves["col-3" + i] && moves["col-2" + i] != '-') {
-            return ["Column win", "1" + i]
+            is_over = 1;
+            return ["Column win", "1" + i];
         }
     }
     if (moves["col-11"] == moves["col-22"] && moves["col-22"] == moves["col-33"] && moves["col-22"] != '-') {
-        return ["Diagonal win", "22"]
+        is_over = 1;
+        return ["Diagonal win", "22"];
     }
     if (moves["col-13"] == moves["col-22"] && moves["col-22"] == moves["col-31"] && moves["col-22"] != '-') {
-        return ["Back diagonal win", "22"]
+        is_over = 1;
+        return ["Back diagonal win", "22"];
     }
     if (!Object.values(moves).includes('-')) {
+        is_over = 1;
         return ["None, it's a draw!", 0]
     }
 }
