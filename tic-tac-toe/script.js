@@ -44,20 +44,28 @@ function reset() {
 
 function render() {
     const board = `
-    <div class="board">
+    <div class="board" id="board-game">
         <div class="row border-under" id="row-1">
             <div class="col border-right" id="col-11">${moves["col-11"]}</div>
+            <div class="col-draw col-draw-1"></div>
             <div class="col border-right" id="col-12">${moves["col-12"]}</div>
+            <div class="col-draw col-draw-1"></div>
             <div class="col" id="col-13">${moves["col-13"]}</div>
         </div>
+        <div class="row-draw"></div>
         <div class="row border-under" id="row-2">
             <div class="col border-right" id="col-21">${moves["col-21"]}</div>
+            <div class="col-draw col-draw-2"></div>
             <div class="col border-right" id="col-22">${moves["col-22"]}</div>
+            <div class="col-draw col-draw-2"></div>
             <div class="col" id="col-23">${moves["col-23"]}</div>
         </div>
+        <div class="row-draw"></div>
         <div class="row" id="row-3">
             <div class="col border-right" id="col-31">${moves["col-31"]}</div>
+            <div class="col-draw col-draw-3"></div>
             <div class="col border-right" id="col-32">${moves["col-32"]}</div>
+            <div class="col-draw col-draw-3"></div>
             <div class="col" id="col-33">${moves["col-33"]}</div>
         </div>
     </div>

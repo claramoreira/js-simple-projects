@@ -8,12 +8,12 @@ h1 {
 
 .board {
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .row {
     display: flex;
-    background-color: rgba(201, 216, 216, 0.575);
-    width: 30em;
 
 }
 
@@ -26,10 +26,46 @@ h1 {
     font-size: 2rem;
 }
 
+/*
 .border-under {
     border-bottom: 0.1rem solid black;
 }
+*/
 
-.border-right {
-    border-right: 0.1rem solid black;
+.row-draw {
+    background-color: black;
+    height: 1rem;
+    width: 90rem;
+    margin-top: -1rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 5%, 0 100%);
+}
+
+.col-draw {
+    margin-left: -1rem;
+}
+
+.col-draw-1 {
+    background-color: black;
+    height: 10rem;
+    width: 1rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 66% 100%, 0 100%);
+}
+
+.col-draw-2 {
+    background-color: black;
+    height: 10rem;
+    width: 1rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 66% 0, 33% 100%, 0 100%);
+}
+
+
+.col-draw-3 {
+    background-color: black;
+    height: 10rem;
+    width: 1rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 33% 0, 0% 100%, 0 100%);
 }
