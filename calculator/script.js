@@ -15,8 +15,9 @@ class Calculator {
 
 function renderCalc(calc) {
     let div = '', curr = '';
-    for (i = 0; i < calc.buttons.length - 1; i++) {
-        curr = `<div class="button">${calc.buttons[i]}</div><br>`
+    div = `<div class="header" id="header"></div>`
+    for (i = 0; i < calc.buttons.length; i++) {
+        curr = `<div class="button">${calc.buttons[i]}</div>`
         div = div + curr;
     }
     document.getElementById("buttons").innerHTML = div;
