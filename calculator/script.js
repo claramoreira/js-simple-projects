@@ -1,7 +1,7 @@
 class Calculator {
     constructor(style = "default") {
-        this.buttons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-            '-', '+', 'x', '/', '=', 'C'];
+        this.buttons = [7, 8, 9, '-', 3, 4, 5, '+', 1, 2, 3, 'x', 0,
+            '/', '='];
         this.style = style;
         this.visor = 0;
         this.mem = null;
@@ -59,10 +59,6 @@ document.addEventListener('click', function (e) {
                 calc.visor = value;
             }
         }
-
-        console.log('Calc Mem: ' + calc.mem)
-        console.log('Calc Mem Op: ' + calc.mem_op)
-        console.log('Calc Visor: ' + calc.visor)
         renderCalc(calc);
     }
 });
@@ -101,9 +97,11 @@ function renderCalc(calc) {
     let div = '', curr = '';
     div = `<div class="header" id="header">${calc.visor}</div>`
     for (i = 0; i < calc.buttons.length; i++) {
-        curr = `<div class="button" id="${calc.buttons[i]}">${calc.buttons[i]}</div>`
+        curr = `<div class="button ${(!isNaN(calc.buttons[i]) ? 'number' : 'operation')}" id="${calc.buttons[i]}">${calc.buttons[i]}</div>`
         div = div + curr;
     }
+    curr = `<div class="button C" id="C">C</div>`
+    div = div + curr;
     document.getElementById("buttons").innerHTML = div;
     return;
 }
